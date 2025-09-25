@@ -8,6 +8,25 @@
 				"pipelineReference": {
 					"referenceName": "Pipeline_for_http_rest_api_file_transfer",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"loop_value": [
+						{
+							"name": "AdventureWorks_Returns.csv"
+						},
+						{
+							"name": "AdventureWorks_Products.csv"
+						},
+						{
+							"name": "AdventureWorks_Sales_2016.csv"
+						},
+						{
+							"name": "AdventureWorks_Territories.csv"
+						},
+						{
+							"name": "AdventureWorks_Sales_2017.csv"
+						}
+					]
 				}
 			}
 		],
@@ -17,6 +36,7 @@
 				"frequency": "Day",
 				"interval": 1,
 				"startTime": "2025-09-26T10:30:00",
+				"endTime": "2025-09-26T15:33:07",
 				"timeZone": "India Standard Time",
 				"schedule": {
 					"minutes": [
