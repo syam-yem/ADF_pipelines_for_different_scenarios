@@ -1,0 +1,30 @@
+{
+	"name": "dataset_for_http_server_rest_api",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Linked_service_for_HttpServer1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_file_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "/syam-yem/ADF_pipelines_for_different_scenarios/tree/main/ADF_datasets/@{dataset().p_file_name}",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
