@@ -8,11 +8,30 @@
 		"Linked_service_for_AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
+		"Linked_service_for_AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://storageaccoutnazure.dfs.core.windows.net/"
+		},
 		"Linked_service_for_HttpServer1_properties_typeProperties_url": {
 			"value": "https://github.com"
 		},
-		"Linked_service_for_AzureDataLakeStorage1_properties_typeProperties_url": {
-			"value": "https://storageaccoutnazure.dfs.core.windows.net/"
+		"Schedule trigger_properties_Pipeline_for_http_rest_api_file_transfer_parameters_loop_value": {
+			"value": [
+				{
+					"name": "AdventureWorks_Returns.csv"
+				},
+				{
+					"name": "AdventureWorks_Products.csv"
+				},
+				{
+					"name": "AdventureWorks_Sales_2016.csv"
+				},
+				{
+					"name": "AdventureWorks_Territories.csv"
+				},
+				{
+					"name": "AdventureWorks_Sales_2017.csv"
+				}
+			]
 		},
 		"containerUri": {
 			"value": ""
