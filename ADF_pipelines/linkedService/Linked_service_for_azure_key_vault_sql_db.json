@@ -1,0 +1,11 @@
+{
+	"name": "Linked_service_for_azure_key_vault_sql_db",
+	"properties": {
+		"description": "Linked service for azure key vault SQL DB password",
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://azurevaultforadf.vault.azure.net/"
+		}
+	}
+}
