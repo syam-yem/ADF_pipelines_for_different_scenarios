@@ -1,0 +1,30 @@
+{
+	"name": "Azure_Sql_sales_Database01",
+	"properties": {
+		"parameters": {
+			"sql_db_username": {
+				"type": "string",
+				"defaultValue": "syam's_saledb"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "sales-0120-server.database.windows.net",
+			"database": "Sales_DB",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "@{linkedService().sql_db_username}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "Linked_service_for_azure_key_vault_sql_db",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sqldbpassword01",
+				"secretVersion": "f32388c3b0f84dcbaaf18c0c6676715a"
+			}
+		}
+	}
+}
