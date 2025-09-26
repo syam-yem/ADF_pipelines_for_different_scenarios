@@ -1,12 +1,7 @@
 {
 	"name": "Azure_Sql_sales_Database01",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
-		"parameters": {
-			"sql_db_username": {
-				"type": "string",
-				"defaultValue": "syam's_saledb"
-			}
-		},
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
@@ -15,16 +10,8 @@
 			"encrypt": "mandatory",
 			"trustServerCertificate": false,
 			"authenticationType": "SQL",
-			"userName": "@{linkedService().sql_db_username}",
-			"password": {
-				"type": "AzureKeyVaultSecret",
-				"store": {
-					"referenceName": "Linked_service_for_azure_key_vault_sql_db",
-					"type": "LinkedServiceReference"
-				},
-				"secretName": "sqldbpassword01",
-				"secretVersion": "f32388c3b0f84dcbaaf18c0c6676715a"
-			}
+			"userName": "syam's_saledb",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEVCOTZBRDQ3LUVFMzMtNDgyNi1CRUQ4LUMwOEM3MzhERkNDM19lYmViOGMwNi05OWY4LTRmODEtODU4NC0zMmNhYmFiN2VjYzgiDQp9"
 		}
 	}
 }
