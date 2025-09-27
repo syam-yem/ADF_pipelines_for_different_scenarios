@@ -11,6 +11,9 @@
 			},
 			"p_folder": {
 				"type": "string"
+			},
+			"p_container": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -26,7 +29,10 @@
 					"value": "@dataset().p_folder",
 					"type": "Expression"
 				},
-				"fileSystem": "destination"
+				"fileSystem": {
+					"value": "@dataset().p_container",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
