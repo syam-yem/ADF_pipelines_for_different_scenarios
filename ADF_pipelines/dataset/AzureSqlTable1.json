@@ -3,24 +3,17 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Azure_Sql_sales_Database01",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"sql_db_username": "syam's_saledb"
-			}
+			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "OrderDate",
+				"name": "ReturnDate",
 				"type": "date"
 			},
 			{
-				"name": "StockDate",
-				"type": "date"
-			},
-			{
-				"name": "OrderNumber",
+				"name": "TerritoryKey",
 				"type": "int",
 				"precision": 10
 			},
@@ -30,29 +23,14 @@
 				"precision": 10
 			},
 			{
-				"name": "CustomerKey",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "TerritoryKe",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "OrderLineItem",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "OrderQuantity",
+				"name": "ReturnQuantity",
 				"type": "int",
 				"precision": 10
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Sales_table"
+			"table": "Sales_Returns"
 		}
 	}
 }
