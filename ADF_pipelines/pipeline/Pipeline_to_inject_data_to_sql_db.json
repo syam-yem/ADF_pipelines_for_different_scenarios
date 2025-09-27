@@ -4,64 +4,15 @@
 		"description": "This pipeline is to load data to sql db not for Prod",
 		"activities": [
 			{
-				"name": "Get Metadata1",
-				"type": "GetMetadata",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "Dataset_for_adls_gen2_destination",
-						"type": "DatasetReference",
-						"parameters": {
-							"p_file": {
-								"value": "AdventureWorks_*.csv\n",
-								"type": "Expression"
-							},
-							"p_folder": "triggerdata",
-							"p_container": "source"
-						}
-					},
-					"fieldList": [
-						"childItems"
-					],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"recursive": true,
-						"enablePartitionDiscovery": false
-					},
-					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
-					}
-				}
-			},
-			{
-				"name": "ForEach1",
+				"name": "ForEach2",
 				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Get Metadata1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
-						"type": "Expression"
-					},
 					"activities": [
 						{
-							"name": "Copy data for Azure sql DB",
-							"type": "Copy",
+							"name": "Get Metadata1",
+							"type": "GetMetadata",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
@@ -72,120 +23,194 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "DelimitedTextSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
-									}
-								},
-								"sink": {
-									"type": "AzureSqlSink",
-									"writeBehavior": "upsert",
-									"upsertSettings": {
-										"useTempDB": true,
-										"keys": [
-											"SalesTerritoryKey"
-										]
-									},
-									"sqlWriterUseTableLock": true,
-									"disableMetricsCollection": false
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"name": "SalesTerritoryKey",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "SalesTerritoryKey",
-												"type": "Int32",
-												"physicalType": "int"
-											}
-										},
-										{
-											"source": {
-												"name": "Region",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "Region",
-												"type": "String",
-												"physicalType": "varchar"
-											}
-										},
-										{
-											"source": {
-												"name": "Country",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "Country",
-												"type": "String",
-												"physicalType": "varchar"
-											}
-										},
-										{
-											"source": {
-												"name": "Continent",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "Continent",
-												"type": "String",
-												"physicalType": "varchar"
-											}
-										}
-									],
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
-							},
-							"inputs": [
-								{
+								"dataset": {
 									"referenceName": "Dataset_for_adls_gen2_destination",
 									"type": "DatasetReference",
 									"parameters": {
 										"p_file": {
-											"value": "@item().name",
+											"value": "AdventureWorks_*.csv\n",
 											"type": "Expression"
 										},
 										"p_folder": "triggerdata",
 										"p_container": "source"
 									}
+								},
+								"fieldList": [
+									"childItems"
+								],
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
 								}
-							],
-							"outputs": [
-								{
-									"referenceName": "AzureSqlTable1",
-									"type": "DatasetReference",
-									"parameters": {
-										"Table_name": {
-											"value": "@variables('FileToTableMapping')[item().name]",
-											"type": "Expression"
-										}
+							}
+						},
+						{
+							"name": "ForEach1",
+							"type": "ForEach",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"items": {
+									"value": "@activity('Get Metadata1').output.childItems",
+									"type": "Expression"
+								},
+								"activities": [
+									{
+										"name": "Copy data for Azure sql DB",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "DelimitedTextSource",
+												"storeSettings": {
+													"type": "AzureBlobFSReadSettings",
+													"recursive": true,
+													"enablePartitionDiscovery": false
+												},
+												"formatSettings": {
+													"type": "DelimitedTextReadSettings"
+												}
+											},
+											"sink": {
+												"type": "AzureSqlSink",
+												"writeBehavior": "upsert",
+												"upsertSettings": {
+													"useTempDB": true,
+													"keys": [
+														"SalesTerritoryKey"
+													]
+												},
+												"sqlWriterUseTableLock": true,
+												"disableMetricsCollection": false
+											},
+											"enableStaging": false,
+											"translator": {
+												"type": "TabularTranslator",
+												"mappings": [
+													{
+														"source": {
+															"name": "SalesTerritoryKey",
+															"type": "String",
+															"physicalType": "String"
+														},
+														"sink": {
+															"name": "SalesTerritoryKey",
+															"type": "Int32",
+															"physicalType": "int"
+														}
+													},
+													{
+														"source": {
+															"name": "Region",
+															"type": "String",
+															"physicalType": "String"
+														},
+														"sink": {
+															"name": "Region",
+															"type": "String",
+															"physicalType": "varchar"
+														}
+													},
+													{
+														"source": {
+															"name": "Country",
+															"type": "String",
+															"physicalType": "String"
+														},
+														"sink": {
+															"name": "Country",
+															"type": "String",
+															"physicalType": "varchar"
+														}
+													},
+													{
+														"source": {
+															"name": "Continent",
+															"type": "String",
+															"physicalType": "String"
+														},
+														"sink": {
+															"name": "Continent",
+															"type": "String",
+															"physicalType": "varchar"
+														}
+													}
+												],
+												"typeConversion": true,
+												"typeConversionSettings": {
+													"allowDataTruncation": true,
+													"treatBooleanAsNumber": false
+												}
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "Dataset_for_adls_gen2_destination",
+												"type": "DatasetReference",
+												"parameters": {
+													"p_file": {
+														"value": "@item().name",
+														"type": "Expression"
+													},
+													"p_folder": "triggerdata",
+													"p_container": "source"
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "AzureSqlTable1",
+												"type": "DatasetReference",
+												"parameters": {
+													"Table_name": {
+														"value": "@variables('FileToTableMapping')[item().name]",
+														"type": "Expression"
+													}
+												}
+											}
+										]
 									}
-								}
-							]
+								]
+							}
 						}
 					]
 				}
 			}
 		],
+		"parameters": {
+			"file_name_loops": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"name": "AdventureWorks_Returns.csv"
+					},
+					{
+						"name": "AdventureWorks_Products.csv"
+					},
+					{
+						"name": "AdventureWorks_Sales_2016.csv"
+					},
+					{
+						"name": "AdventureWorks_Territories.csv"
+					},
+					{
+						"name": "AdventureWorks_Sales_2017.csv"
+					}
+				]
+			}
+		},
 		"variables": {
 			"FileToTableMapping": {
 				"type": "String",
