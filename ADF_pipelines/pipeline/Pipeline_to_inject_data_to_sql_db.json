@@ -57,7 +57,7 @@
 					},
 					"activities": [
 						{
-							"name": "Copy data1",
+							"name": "Copy data for Azure sql DB",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
