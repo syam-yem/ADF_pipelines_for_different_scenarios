@@ -79,7 +79,8 @@
 											"value": "@item().name",
 											"type": "Expression"
 										},
-										"p_folder": "gitdatasets"
+										"p_folder": "gitdatasets",
+										"p_container": "destination"
 									}
 								}
 							]
