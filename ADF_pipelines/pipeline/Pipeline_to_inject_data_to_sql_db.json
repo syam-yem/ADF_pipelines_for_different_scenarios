@@ -20,6 +20,7 @@
 						"referenceName": "Dataset_for_adls_gen2_destination",
 						"type": "DatasetReference",
 						"parameters": {
+							"p_file": "Adventure",
 							"p_folder": "triggerdata",
 							"p_container": "source"
 						}
@@ -29,6 +30,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
