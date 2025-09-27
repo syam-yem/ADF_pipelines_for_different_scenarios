@@ -1,7 +1,0 @@
-{
-	"name": "Pipeline_data_load_from_azure_db",
-	"properties": {
-		"description": "This Pipeline loads the data from Azure SQL DB to ADLS gen2 with CDC enabled",
-		"annotations": []
-	}
-}
