@@ -71,7 +71,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"p_file": {
-											"value": "@{concat('Adventure_works_',trim(item().name), '.csv')}\n",
+											"value": "@concat(trim(item().name), '.csv')\n",
 											"type": "Expression"
 										},
 										"p_folder": "triggerone",
