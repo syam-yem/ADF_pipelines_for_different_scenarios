@@ -30,7 +30,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Sales_Returns"
+			"table": "SalesTerritory"
 		}
 	}
 }
