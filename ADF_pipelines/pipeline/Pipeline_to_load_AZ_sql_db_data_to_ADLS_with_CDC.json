@@ -1,0 +1,108 @@
+{
+	"name": "Pipeline_to_load_AZ_sql_db_data_to_ADLS_with_CDC",
+	"properties": {
+		"description": "This pipeline will load  data from azure sql db data to ADLS  with change data capture ",
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.loop_table_names",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "AzureSqlTable1",
+									"type": "DatasetReference",
+									"parameters": {
+										"Table_name": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Dataset_for_adls_gen2_destination",
+									"type": "DatasetReference",
+									"parameters": {
+										"p_file": {
+											"value": "Adventure_works{@item().name}.csv",
+											"type": "Expression"
+										},
+										"p_folder": "triggerone",
+										"p_container": "sqldbdestination"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"loop_table_names": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"name": "Products"
+					},
+					{
+						"name": "Sales_Returns"
+					},
+					{
+						"name": "Sales_table"
+					},
+					{
+						"name": "SalesTerritory"
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}
