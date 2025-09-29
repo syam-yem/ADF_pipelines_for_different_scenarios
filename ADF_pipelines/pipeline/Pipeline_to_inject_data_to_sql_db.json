@@ -32,7 +32,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"p_file": {
-											"value": "AdventureWorks_*.csv\n",
+											"value": "@item().name",
 											"type": "Expression"
 										},
 										"p_folder": "triggerdata",
@@ -55,7 +55,14 @@
 						{
 							"name": "ForEach1",
 							"type": "ForEach",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Get Metadata1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"items": {
