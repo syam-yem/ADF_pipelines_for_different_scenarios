@@ -1225,6 +1225,19 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"parameters": {
+					"Schema": {
+						"type": "string",
+						"defaultValue": "Source"
+					},
+					"table": {
+						"type": "string",
+						"defaultValue": "Orders"
+					},
+					"backdate": {
+						"type": "string"
+					}
+				},
 				"folder": {
 					"name": "SQL DB To Parquet Incremental  Pipeline/Execution"
 				},

@@ -138,6 +138,19 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"parameters": {
+					"Schema": {
+						"type": "string",
+						"defaultValue": "Source"
+					},
+					"table": {
+						"type": "string",
+						"defaultValue": "Orders"
+					},
+					"backdate": {
+						"type": "string"
+					}
+				},
 				"folder": {
 					"name": "SQL DB To Parquet Incremental  Pipeline/Execution"
 				},
@@ -1225,16 +1238,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SelfintegrationRuntime1')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Scheduled_trigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -1263,6 +1266,16 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/EXECUTE_Pipeline_to_load_AZ_sql_db_data_to_ADLS_with_CDC')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SelfintegrationRuntime1')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
 		}
 	]
 }
