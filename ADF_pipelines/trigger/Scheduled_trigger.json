@@ -1,0 +1,24 @@
+{
+	"name": "Scheduled_trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EXECUTE_Pipeline_to_load_AZ_sql_db_data_to_ADLS_with_CDC",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 16,
+				"startTime": "2025-09-29T17:05:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
