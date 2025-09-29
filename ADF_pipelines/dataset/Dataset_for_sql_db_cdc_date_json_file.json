@@ -1,0 +1,30 @@
+{
+	"name": "Dataset_for_sql_db_cdc_date_json_file",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Linked_service_for_AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL DB To Parquet Incremental  Datasets"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "cdc.json",
+				"folderPath": "monitor",
+				"fileSystem": "sqldb2source"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"cdc_timestamp": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

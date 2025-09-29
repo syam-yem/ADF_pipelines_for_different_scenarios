@@ -1,0 +1,23 @@
+{
+	"name": "dataset_for_sqldb_sink_Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Linked_service_for_AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL DB To Parquet Incremental  Datasets"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "orders",
+				"fileSystem": "sqldb2destination"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

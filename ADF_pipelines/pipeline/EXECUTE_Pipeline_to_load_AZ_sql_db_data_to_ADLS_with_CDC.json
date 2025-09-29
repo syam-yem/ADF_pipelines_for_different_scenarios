@@ -1,0 +1,31 @@
+{
+	"name": "EXECUTE_Pipeline_to_load_AZ_sql_db_data_to_ADLS_with_CDC",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Pipeline_to_load_AZ_sql_db_data_to_ADLS_with_CDC",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Schema": "source",
+						"table": "Orders"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "SQL DB To Parquet Incremental  Pipeline/Execution"
+		},
+		"annotations": []
+	}
+}

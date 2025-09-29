@@ -1,0 +1,25 @@
+{
+	"name": "dataset_for_empty_json_file",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Linked_service_for_AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL DB To Parquet Incremental  Datasets"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "empty.json",
+				"folderPath": "monitor",
+				"fileSystem": "sqldb2source"
+			}
+		},
+		"schema": {
+			"type": "object"
+		}
+	}
+}
