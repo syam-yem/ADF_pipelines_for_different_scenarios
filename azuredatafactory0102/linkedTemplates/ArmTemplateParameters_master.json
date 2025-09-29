@@ -23,6 +23,15 @@
 		"Linked_service_for_AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://storageaccoutnazure.dfs.core.windows.net/"
 		},
+		"Linked_service_for_Azure_sql_db_02_properties_typeProperties_server": {
+			"value": "sales-0120-server.database.windows.net"
+		},
+		"Linked_service_for_Azure_sql_db_02_properties_typeProperties_database": {
+			"value": "azure_db_for_testing"
+		},
+		"Linked_service_for_Azure_sql_db_02_properties_typeProperties_userName": {
+			"value": "syam's_saledb"
+		},
 		"Linked_service_for_HttpServer1_properties_typeProperties_url": {
 			"value": "https://github.com"
 		},
