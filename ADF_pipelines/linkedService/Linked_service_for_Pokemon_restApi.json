@@ -1,0 +1,12 @@
+{
+	"name": "Linked_service_for_Pokemon_restApi",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://pokeapi.co/api/v2/pokemon",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
